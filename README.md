@@ -1,70 +1,48 @@
-# こころの編尾チャット (高齢者向けAI役割切替形音声入力チャット)
+# 🍵 こころの縁側チャット（Kokoro no Engawa Chat）
 
-## 概要
+高齢者の方に向けた、心に寄り添う音声対話AIチャットボットです。  
+音声入力・方言切替・キャラクター切替などを備え、まるで縁側でおしゃべりしているような温かさを届けます。
 
-「**こころの編尾チャット**」は、**高齢者向けの心に寄り添う音声对話AIチャットボット**です．
-以下の機能を備えており、こころの休息所のような仕組みを目指しました。
-
-## 主要機能
-
-- 【🍴話し相手切り替機能】
-  - しずかさん（病みを聞いてくれる優しい人）
-  - なつおじ（憩しを感じさせる思い出話風）
-  - げんき丸（元気づけする役々）
-  - みつじい（ダジャレやユーモアを入れて笑わせる）
-
-- 【🌎方言スタイル切り替機能】
-  - 標準語 / 関西語 / 東北語 / 群馬語 / 広島語 / 熊本語 / 沖縄語
-
-- 【🎧音声入力 & 読み上げ】
-  - Google Speech Recognition での声認識
-  - pyttsx3 での読み上げ (しずかさんは女性声 など)
-
-- 【📊最新ニュース/天気 サーチ】
-  - SerpAPI を使ってGoogle検索結果を見せながら応答
-
-- 【📃Azure Cosmos DBに展開する会話履歴】
-  - 各使用者ID単位でも保存が可能
+👉 デモ動画：https://youtu.be/8irsx42btNo
 
 ---
 
-## 技術構成
+## 🧩 主な機能
+
+- 🎙 **音声入力でチャット**（マイクで話すだけ）
+- 🧑‍🤝‍🧑 **エージェント切替**（癒し／思い出話／元気づけ／ダジャレ）
+- 🗣 **方言対応**：関西弁、東北弁、群馬弁、広島弁、熊本弁、沖縄弁
+- 🧠 **Azure OpenAI GPT-4o連携**
+- 🔊 **pyttsx3による音声読み上げ**（キャラごとに声変更）
+- 🌤 **最新ニュースや天気を検索（SerpAPI連携）**
+- 📦 **会話履歴を Azure Cosmos DB に保存**
+
+---
+
+## ⚙️ 技術スタック
 
 | 技術 | 内容 |
-|--------|--------|
-| 開発言語 | Python / Streamlit |
-| 音声認識 | `speech_recognition` |
-| 読み上げ | `pyttsx3` (声変更対応) |
+|------|------|
+| UI | Streamlit |
+| 言語 | Python |
 | LLM | Azure OpenAI GPT-4o |
-| 矩空検索 | SerpAPI (日本語Web検索) |
-| データ保存 | Azure Cosmos DB (NoSQL) |
+| 音声認識 | `speech_recognition` (Google) |
+| 読み上げ | `pyttsx3` |
+| 検索API | SerpAPI |
+| データ保存 | Azure Cosmos DB |
+| その他 | 方言プロンプト／キャラクター指示切替など
 
 ---
 
-## 実行方法
+## 🚀 実行方法
 
-1. secrets.toml を作成
+1. `secrets.toml` を用意（以下をローカルに設置）:
+
 ```toml
 openai_api_key = "sk-..."
-azure_endpoint = "https://xxxx.openai.azure.com"
+azure_endpoint = "https://xxx.openai.azure.com"
 azure_deployment = "gpt4o"
 COSMOS_CONNECTION_STRING = "AccountEndpoint=..."
-COSMOS_DB_NAME = "xxxxx"
+COSMOS_DB_NAME = "your-db"
 COSMOS_CONTAINER_NAME = "messages"
 SERPAPI_KEY = "your-serpapi-key"
-```
-
-2. Streamlit 実行
-```bash
-streamlit run app.py
-```
-
----
-
-## ライセンス
-MIT
-
----
-
-## 目的
-孤独感の解消、こころの軟らぐ場所を目指します。
