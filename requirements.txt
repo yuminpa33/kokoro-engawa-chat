@@ -5,3 +5,4 @@ speechrecognition
 azure-cosmos
 langchain==0.1.14
 langchain-community
+pyaudio
